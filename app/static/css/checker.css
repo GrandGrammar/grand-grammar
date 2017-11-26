@@ -12,13 +12,30 @@ nav .nav-wrapper {
   height: 42px;
 }
 
+footer.page-footer {
+  padding: 0;
+  text-align: center;
+}
+
 .body {
   margin: 15px 20px;
 }
 
-.body .layout-left .card {
-  height: 250px;
+.body .card {
   margin: 15px 0;
+}
+
+.body .card#checker-input-block {
+  height: 280px;
+}
+.body .card#checker-output-block {
+  height: 280px;
+}
+.body .card#topic-block {
+  height: 190px;
+}
+.body .card#dictionary-block {
+  height: 370px;
 }
 
 .body .card .card-content {
@@ -46,22 +63,22 @@ nav .nav-wrapper {
   top: -38px;
 }
 
+#download-btn {
+  right: 242px;
+}
 #tag-btn {
-  right: 141px;
+  right: 161px;
 }
-
 #edit-btn {
-  right: 60px;
+  right: 80px;
 }
-
 #check-btn {
   position: absolute;
   top: -45px;
-  right: -35px;
+  right: -15px;
   width: 70px;
   height: 70px;
 }
-
 #check-btn i {
   font-size: 30px;
   line-height: 70px;

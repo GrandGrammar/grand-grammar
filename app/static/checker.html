@@ -22,39 +22,50 @@
     </div>
   </nav>
 
-<div class="body">
-  <div class="row">
-    <div class="col s8 layout-left">
-      <div class="card">
-        <div class="card-content">
-          <p class="flow-text">
-            <textarea placeholder="Feed me with some sentences..." autofocus="true"></textarea>
-          </p>
+  <div class="body">
+    <div class="row">
+      <div class="col s8">
+        <div id="checker-input-block" class="card">
+          <div class="card-content">
+            <p class="flow-text">
+              <textarea placeholder="Feed me with some sentences..." autofocus="true"></textarea>
+            </p>
+          </div>
+        </div>
+        <div class="edit-btns">
+          <a id="download-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-3"><i class="material-icons">get_app</i></a>
+          <a id="tag-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-2"><i class="material-icons">local_offer</i></a>
+          <a id="edit-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-1"><i class="material-icons">create</i></a>
+          <a id="check-btn" class="btn-floating waves-effect waves-light deep-purple pulse"><i class="material-icons">spellcheck</i></a>
+        </div>
+        <div id="checker-output-block"  class="card">
+          <div class="card-content">
+            <p id="correct-text" class="flow-text">I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+          </div>
         </div>
       </div>
-      <div class="edit-btns">
-        <!-- <a class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-1"><i class="material-icons">get_app</i></a>
-
-        <a class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-1"><i class="material-icons">tag_faces</i></a> -->
-        <a id="tag-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-2"><i class="material-icons">local_offer</i></a>
-        <a id="edit-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-1"><i class="material-icons">create</i></a>
-        <a id="check-btn" class="btn-floating waves-effect waves-light deep-purple pulse"><i class="material-icons">spellcheck</i></a>
-      </div>
-      <div class="card">
-        <div class="card-content">
-          <p id="correct-text" class="flow-text">I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+      <div class="col s4">
+        <div id="topic-block" class="card">
+          <div class="card-content">
+            <span class="card-title">You are talking about...</span>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col s4 layout-right">
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title">You are talking about...</span>
+        <div id="dictionary-block" class="card">
+          <div class="card-content">
+            <span class="card-title">Vocabulary Master</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+
+  <footer class="page-footer deep-purple lighten-5">
+    <div class="footer-copyright">
+      <div class="container black-text">
+        &copy;2017&nbsp;GrandGrammar
+      </div>
+    </div>
+  </footer>
 
   <script type="text/javascript" src="lib/jquery/jquery-1.10.1.min.js"></script>
   <script type="text/javascript" src="lib/jquery/jquery.hoverIntent.min.js"></script>
