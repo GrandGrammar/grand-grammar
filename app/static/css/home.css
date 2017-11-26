@@ -3,20 +3,47 @@ body {
   padding: 0;
 }
 
+nav {
+  background: rgba(0, 0, 0, 0.1);
+  background: -webkit-linear-gradient(rgba(237, 231, 241, 0.4), rgba(0, 0, 0, 0));
+  background: -o-linear-gradient(rgba(237, 231, 241, 0.4), rgba(0, 0, 0, 0));
+  background: -moz-linear-gradient(rgba(237, 231, 241, 0.4), rgba(0, 0, 0, 0));
+  background: linear-gradient(rgba(237, 231, 241, 0.4), rgba(0, 0, 0, 0));
+  box-shadow: none;
+  height: 75px;
+  position: absolute;
+}
+
 nav .nav-wrapper {
   margin: 0 30px;
 }
 
 .brand-logo img {
-  margin: 7px 0;
-  height: 50px;
+  margin: 11px 0;
+  height: 42px;
 }
 
-body .content {
-  margin: 15px 15px;
+.background-container {
+  background: url('../images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
 }
 
-footer.page-footer {
-  padding: 0;
-  text-align: center;
+.background-container .container {
+  position: relative;
+  top: 25%;
+}
+
+.background-container .container .row {
+  margin-bottom: 30px;
+}
+
+.background-container .section {
+  height: 100%;
+}
+
+.background-container .container h1 {
+  margin: 30px;
 }
