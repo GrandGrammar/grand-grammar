@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+nav .nav-wrapper {
+  margin: 0 30px;
+}
+
+.brand-logo img {
+  margin: 11px 0;
+  height: 42px;
+}
+
+.body {
+  margin: 15px 20px;
+}
+
+.body .layout-left .card {
+  height: 250px;
+  margin: 15px 0;
+}
+
+.body .card .card-content {
+  height: 100%;
+}
+
+.body .card .card-content p {
+  height: 100%
+}
+
+.body .card .card-content p textarea {
+  height: 100%;
+  border: none;
+  outline: none;
+}
+
+.edit-btns {
+  position: relative;
+  height: 0;
+  width: 100%;
+}
+
+.edit-btn {
+  position: absolute;
+  top: -38px;
+}
+
+#tag-btn {
+  right: 141px;
+}
+
+#edit-btn {
+  right: 60px;
+}
+
+#check-btn {
+  position: absolute;
+  top: -45px;
+  right: -35px;
+  width: 70px;
+  height: 70px;
+}
+
+#check-btn i {
+  font-size: 30px;
+  line-height: 70px;
+}

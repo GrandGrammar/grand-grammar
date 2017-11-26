@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Checker - GrandGrammar</title>
+  <link type="text/css" rel="stylesheet" href="lib/materialize/materialize.min.css" />
+  <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+  <link type="text/css" rel="stylesheet" href="css/checker.css" />
+  <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+
+<body>
+  <nav class="deep-purple lighten-5">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo"><img src="images/logo_name.png"></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/" class="black-text">Home</a></li>
+        <li class="active"><a href="#" class="black-text">Checker</a></li>
+        <li><a href="/about" class="black-text">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<div class="body">
+  <div class="row">
+    <div class="col s8 layout-left">
+      <div class="card">
+        <div class="card-content">
+          <p class="flow-text">
+            <textarea placeholder="Feed me with some sentences..." autofocus="true"></textarea>
+          </p>
+        </div>
+      </div>
+      <div class="edit-btns">
+        <!-- <a class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-1"><i class="material-icons">get_app</i></a>
+
+        <a class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-1"><i class="material-icons">tag_faces</i></a> -->
+        <a id="tag-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-2"><i class="material-icons">local_offer</i></a>
+        <a id="edit-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-1"><i class="material-icons">create</i></a>
+        <a id="check-btn" class="btn-floating waves-effect waves-light deep-purple pulse"><i class="material-icons">spellcheck</i></a>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <p id="correct-text" class="flow-text">I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col s4 layout-right">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">You are talking about...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script type="text/javascript" src="lib/jquery/jquery-1.10.1.min.js"></script>
+  <script type="text/javascript" src="lib/jquery/jquery.hoverIntent.min.js"></script>
+  <script type="text/javascript" src="lib/materialize/materialize.min.js"></script>
+
+  <script type="text/javascript" src="js/checker.js"></script>
+</body>
+
+</html>
