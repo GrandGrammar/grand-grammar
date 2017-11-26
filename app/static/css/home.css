@@ -47,3 +47,11 @@ nav .nav-wrapper {
 .background-container .container h1 {
   margin: 30px;
 }
+
+.copyright {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  margin: 15px 0;
+}
