@@ -34,6 +34,33 @@ def call_twinword_api(url, params):
 
     return response
 
+@app.route('/api/check_grammar')
+def check_grammar():
+    # TODO: Implement this api
+    text = request.args['text']
+    results = [{
+        'from': 17,
+        'to': 19,
+        'suggestion': 'is'
+    }, {
+        'from': 21,
+        'to': 53,
+        'suggestion': 'a scientific and practical approach'
+    }, {
+        'from': 186,
+        'to': 193,
+        'suggestion': 'methodical'
+    }, {
+        'from': 390,
+        'to': 400,
+        'suggestion': 'transcribed'
+    }, {
+        'from': 472,
+        'to': 484,
+        'suggestion': 'most succinct'
+    }]
+    return json.dumps(results)
+
 @app.route('/api/get_topics')
 def get_topics():
     text = request.args['text']

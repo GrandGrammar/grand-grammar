@@ -43,7 +43,8 @@ footer.page-footer {
 }
 
 .body .card .card-content p {
-  height: 100%
+  height: 100%;
+  overflow: auto;
 }
 
 .body .card .card-content p textarea {
@@ -63,7 +64,7 @@ footer.page-footer {
   top: -38px;
 }
 
-#download-btn {
+#copy-btn {
   right: 242px;
 }
 #tag-btn {

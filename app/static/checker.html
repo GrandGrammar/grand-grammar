@@ -22,25 +22,26 @@
     </div>
   </nav>
 
-  <div class="body">
+  <div id="vue-app" class="body">
     <div class="row">
       <div class="col s8">
         <div id="checker-input-block" class="card">
           <div class="card-content">
-            <p class="flow-text">
-              <textarea placeholder="Feed me with some sentences..." autofocus="true"></textarea>
+            <p v-show="edittingEssay" class="flow-text">
+              <textarea placeholder="Feed me with some sentences..." autofocus="true" v-model="inputEssay"></textarea>
             </p>
+            <p v-show="!edittingEssay" id="error-text" class="flow-text"></p>
           </div>
         </div>
         <div class="edit-btns">
-          <a id="download-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-3"><i class="material-icons">get_app</i></a>
+          <a id="copy-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-3"><i class="material-icons">content_copy</i></a>
           <a id="tag-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-2"><i class="material-icons">local_offer</i></a>
           <a id="edit-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-1"><i class="material-icons">create</i></a>
-          <a id="check-btn" class="btn-floating waves-effect waves-light deep-purple pulse"><i class="material-icons">spellcheck</i></a>
+          <a id="check-btn" class="btn-floating waves-effect waves-light deep-purple pulse"><i class="material-icons" @click="checkGrammar">spellcheck</i></a>
         </div>
         <div id="checker-output-block"  class="card">
           <div class="card-content">
-            <p id="correct-text" class="flow-text">I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+            <p id="correct-text" class="flow-text"></p>
           </div>
         </div>
       </div>
@@ -70,8 +71,10 @@
   <script type="text/javascript" src="lib/jquery/jquery-1.10.1.min.js"></script>
   <script type="text/javascript" src="lib/jquery/jquery.hoverIntent.min.js"></script>
   <script type="text/javascript" src="lib/materialize/materialize.min.js"></script>
+  <script type="text/javascript" src="lib/vue/vue.min.js"></script>
 
   <script type="text/javascript" src="js/checker.js"></script>
+  <script type="text/javascript" src="js/checker.jq.js"></script>
 </body>
 
 </html>

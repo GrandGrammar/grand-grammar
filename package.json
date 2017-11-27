@@ -4,7 +4,8 @@
   "description": "An English Essay Grammar Checking System",
   "main": "index.js",
   "dependencies": {
-    "typed.js": "^2.0.6"
+    "typed.js": "^2.0.6",
+    "vue": "^2.5.8"
   },
   "devDependencies": {},
   "scripts": {
