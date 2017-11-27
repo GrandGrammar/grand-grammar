@@ -48,13 +48,45 @@
       <div class="col s4">
         <div id="topic-block" class="card">
           <div class="card-content">
-            <span class="card-title">You are talking about...</span>
+            <span class="card-title deep-purple-text text-darken-1">You are talking about...</span>
             <div v-for="topic in topics" class="chip">{{ topic }}</div>
           </div>
         </div>
         <div id="dictionary-block" class="card">
           <div class="card-content">
-            <span class="card-title">Vocabulary Master</span>
+            <span class="card-title deep-purple-text text-darken-1">Vocabulary Master</span>
+            <div class="word-input-block">
+              Search for:
+              <div class="input-field inline">
+                <input type="text" v-model="queryWord" @keyup.enter="searchWord">
+              </div>
+            </div>
+            <div class="definition-part">
+              <div v-show="nouDef.length > 0">
+                <label>Noun</label>
+                <ol>
+                  <li v-for="def in nouDef">{{ def }}</li>
+                </ol>
+              </div>
+              <div v-show="vrbDef.length > 0">
+                <label>Verb</label>
+                <ol>
+                  <li v-for="def in vrbDef">{{ def }}</li>
+                </ol>
+              </div>
+              <div v-show="adjDef.length > 0">
+                <label>Adjective</label>
+                <ol>
+                  <li v-for="def in adjDef">{{ def }}</li>
+                </ol>
+              </div>
+              <div v-show="advDef.length > 0">
+                <label>Adverb</label>
+                <ol>
+                  <li v-for="def in advDef">{{ def }}</li>
+                </ol>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -86,4 +86,4 @@ def get_definition():
         'https://twinword-word-graph-dictionary.p.mashape.com/definition/',
         { 'entry': word }
     )
-    return json.dumps(response.body['meaning'])
+    return json.dumps(response.body)

@@ -34,8 +34,9 @@ footer.page-footer {
 .body .card#topic-block {
   height: 190px;
 }
-.body .card#dictionary-block {
-  height: 370px;
+
+.body .card .card-title {
+  font-weight: 400;
 }
 
 .body .card .card-content {
@@ -83,4 +84,24 @@ footer.page-footer {
 #check-btn i {
   font-size: 30px;
   line-height: 70px;
+}
+
+#dictionary-block .word-input-block {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 300;
+}
+#dictionary-block .word-input-block .input-field {
+  margin: 0 0 0 20px;
+  flex: 1;
+}
+#dictionary-block .word-input-block .input-field input {
+  margin-bottom: 0;
+  font-size: 20px;
+  font-weight: 300;
+}
+#dictionary-block .word-input-block .input-field input:focus {
+  border-bottom: 1px solid #b39ddb;
+  box-shadow: 0 1px 0 0 #b39ddb;
 }

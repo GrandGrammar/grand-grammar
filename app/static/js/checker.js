@@ -6,7 +6,12 @@ var app = new Vue({
     inputEssay: 'Computer science are scientific and practical approach to compute and its applications. It is the systematic studying of the feasibility, structure, expression, and mechanization of the methodic procedures that underlies the acquisition, representation, processing, storage, communication of, and access for information, whether such information are encoded of bits in a computer memory or transgribed in genes and protein structures in a biological cell. An alternative, more succinct definitions of computer science is the study of automating algorithmic processes that scale.',
     outputEssay: '',
     edittingEssay: true,
-    topics: []
+    topics: [],
+    queryWord: '',
+    nouDef: [],
+    vrbDef: [],
+    adjDef: [],
+    advDef: []
   },
   methods: {
     checkGrammar: function() {
@@ -45,7 +50,8 @@ var app = new Vue({
               function() { $(this).css('background-color',''); }
             );
             $('#correct-text span').click(function() {
-              console.log($(this).text());
+              _this.queryWord = $(this).text();
+              _this.searchWord();
             });
           });
         }
@@ -77,6 +83,54 @@ var app = new Vue({
           _this.topics = [];
           for (var i = 0; i < Math.min(10, sortedTopics.length); i++) {
             _this.topics.push(sortedTopics[i][0]);
+          }
+        }
+      });
+    },
+    searchWord: function() {
+      if (!this.queryWord) {
+        Materialize.toast('Please enter the word!', 3000);
+        return;
+      }
+      var _this = this;
+      $.ajax({
+        method: 'GET',
+        url: '/api/get_definition',
+        data: { word: this.queryWord },
+        success: function(resp) {
+          var respJson = JSON.parse(resp);
+          if (respJson.result_msg !== 'Success') {
+            Materialize.toast(respJson.result_msg, 3000);
+            return;
+          }
+          var meaningObj = respJson.meaning;
+          _this.nouDef = [];
+          _this.vrbDef = [];
+          _this.adjDef = [];
+          _this.advDef = [];
+          if (meaningObj['noun']) {
+            var meanings = meaningObj['noun'].split('\n');
+            for (var i = 0; i < meanings.length; i++) {
+              _this.nouDef.push(meanings[i].substring(6));
+            }
+          }
+          if (meaningObj['verb']) {
+            meanings = meaningObj['verb'].split('\n');
+            for (var i = 0; i < meanings.length; i++) {
+              _this.vrbDef.push(meanings[i].substring(6));
+            }
+          }
+          if (meaningObj['adjective']) {
+            meanings = meaningObj['adjective'].split('\n');
+            for (var i = 0; i < meanings.length; i++) {
+              _this.adjDef.push(meanings[i].substring(6));
+            }
+          }
+          if (meaningObj['adverb']) {
+            meanings = meaningObj['adverb'].split('\n');
+            for (var i = 0; i < meanings.length; i++) {
+              _this.advDef.push(meanings[i].substring(6));
+            }
           }
         }
       });
