@@ -4,22 +4,9 @@ var app = new Vue({
   el: '#vue-app',
   data: {
     inputEssay: 'Computer science are scientific and practical approach to compute and its applications. It is the systematic studying of the feasibility, structure, expression, and mechanization of the methodic procedures that underlies the acquisition, representation, processing, storage, communication of, and access for information, whether such information are encoded of bits in a computer memory or transgribed in genes and protein structures in a biological cell. An alternative, more succinct definitions of computer science is the study of automating algorithmic processes that scale.',
-    originalEssay: '',
-    edittingEssay: true
-  },
-  mounted: function() {
-    // $(document).ready(function() {
-    //   $('#correct-text span').hoverIntent(
-    //     function() {
-    //       console.log($(this).text());
-    //       $(this).css('background-color','#d1c4e9');
-    //     },
-    //     function() { $(this).css('background-color',''); }
-    //   );
-    //   $('#correct-text span').click(function() {
-    //     console.log($(this).text());
-    //   });
-    // })
+    outputEssay: '',
+    edittingEssay: true,
+    topics: []
   },
   methods: {
     checkGrammar: function() {
@@ -33,16 +20,20 @@ var app = new Vue({
 
           var correctedText = '';
           var errorText = '';
+          var outputEssay = '';
           var lastStart = 0;
           for (var i = 0; i < errorList.length; i++) {
             correctedText += _this.inputEssay.substring(lastStart, errorList[i].from) + '<b style="color:green;">' + errorList[i].suggestion + '</b>';
             errorText += _this.inputEssay.substring(lastStart, errorList[i].from) + '<b style="color:red;">' + _this.inputEssay.substring(errorList[i].from, errorList[i].to + 1) + '</b>';
+            outputEssay += _this.inputEssay.substring(lastStart, errorList[i].from) + errorList[i].suggestion;
             lastStart = errorList[i].to + 1;
           }
           correctedText += _this.inputEssay.substring(lastStart);
           errorText += _this.inputEssay.substring(lastStart);
+          outputEssay += _this.inputEssay.substring(lastStart);
 
           _this.edittingEssay = false;
+          _this.outputEssay = outputEssay;
 
           Vue.nextTick(function() {
             $('#correct-text').html(_this.addSpanTag(correctedText));
@@ -56,12 +47,39 @@ var app = new Vue({
             $('#correct-text span').click(function() {
               console.log($(this).text());
             });
-          })
+          });
         }
-      })
+      });
     },
     editEssay: function() {
       this.edittingEssay = true;
+      this.outputEssay = '';
+    },
+    generateTopicTags: function() {
+      if (!this.outputEssay) {
+        Materialize.toast('Please check grammar first!', 3000);
+        return;
+      }
+      var _this = this;
+      $.ajax({
+        method: 'GET',
+        url: '/api/get_topics',
+        data: { text: this.outputEssay },
+        success: function(resp) {
+          var topicObj = JSON.parse(resp);
+          var sortedTopics = [];
+          for (var topic in topicObj) {
+            sortedTopics.push([topic, topicObj[topic]]);
+          }
+          sortedTopics.sort(function(a, b) {
+            return b[1] - a[1];
+          });
+          _this.topics = [];
+          for (var i = 0; i < Math.min(10, sortedTopics.length); i++) {
+            _this.topics.push(sortedTopics[i][0]);
+          }
+        }
+      });
     },
     addSpanTag: function(text) {
       var res = '';

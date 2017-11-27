@@ -35,7 +35,7 @@
         </div>
         <div class="edit-btns">
           <a id="copy-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-3"><i class="material-icons">content_copy</i></a>
-          <a id="tag-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-2"><i class="material-icons">local_offer</i></a>
+          <a id="tag-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-2"><i class="material-icons" @click="generateTopicTags">local_offer</i></a>
           <a id="edit-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-1"><i class="material-icons" @click="editEssay">create</i></a>
           <a id="check-btn" class="btn-floating waves-effect waves-light deep-purple pulse"><i class="material-icons" @click="checkGrammar">spellcheck</i></a>
         </div>
@@ -49,6 +49,7 @@
         <div id="topic-block" class="card">
           <div class="card-content">
             <span class="card-title">You are talking about...</span>
+            <div v-for="topic in topics" class="chip">{{ topic }}</div>
           </div>
         </div>
         <div id="dictionary-block" class="card">
