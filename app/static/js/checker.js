@@ -40,27 +40,57 @@ var app = new Vue({
             lastStart = errorList[i].to + 1;
           }
           correctedText += _this.inputEssay.substring(lastStart);
+          errorText += _this.inputEssay.substring(lastStart);
 
           _this.edittingEssay = false;
 
           Vue.nextTick(function() {
-            // var correctText = $('#correct-text').text();
-            // $('#correct-text').html(correctText.replace(/\b(\w+)\b/g, "<span>$1</span>"));
-            $('#correct-text').html(correctedText);
+            $('#correct-text').html(_this.addSpanTag(correctedText));
             $('#error-text').html(errorText);
-            // $('#correct-text span').hoverIntent(
-            //   function() {
-            //     console.log($(this).text());
-            //     $(this).css('background-color','#d1c4e9');
-            //   },
-            //   function() { $(this).css('background-color',''); }
-            // );
-            // $('#correct-text span').click(function() {
-            //   console.log($(this).text());
-            // });
+            $('#correct-text span').hoverIntent(
+              function() {
+                $(this).css('background-color','#d1c4e9');
+              },
+              function() { $(this).css('background-color',''); }
+            );
+            $('#correct-text span').click(function() {
+              console.log($(this).text());
+            });
           })
         }
       })
+    },
+    editEssay: function() {
+      this.edittingEssay = true;
+    },
+    addSpanTag: function(text) {
+      var res = '';
+      var lastIndex = 0;
+      var index = text.indexOf('<b');
+      while (index != -1) {
+        res += this.addSpanTagNoBolder(text.substring(lastIndex, index));
+        var beginClose = text.indexOf('>', index);
+        res += text.substring(index, beginClose + 1);
+        var end = text.indexOf('</b>', beginClose);
+        res += this.addSpanTagNoBolder(text.substring(beginClose + 1, end)) + '</b>';
+        lastIndex = end + 4;
+        index = text.indexOf('<b', lastIndex);
+      }
+      res += this.addSpanTagNoBolder(text.substring(lastIndex));
+      return res;
+    },
+    addSpanTagNoBolder: function(text) {
+      var res = '';
+      var re = /\w+/;
+      var parts = text.match(/\w+|\s+|[^\s\w]+/g);
+      for (var i = 0; i < parts.length; i++) {
+        if (re.test(parts[i])) {
+          res += '<span>' + parts[i] + '</span>';
+        } else {
+          res += parts[i];
+        }
+      }
+      return res;
     }
   }
 });
