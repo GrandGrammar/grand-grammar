@@ -1,9 +1,13 @@
+/*
+Computer science are scientific and practical approach to compute and its applications. It is the systematic studying of the feasibility, structure, expression, and mechanization of the methodic procedures that underlies the acquisition, representation, processing, storage, communication of, and access for information, whether such information are encoded of bits in a computer memory or transgribed in genes and protein structures in a biological cell. An alternative, more succinct definitions of computer science is the study of automating algorithmic processes that scale.
+ */
+
 Vue.config.devtools = true;
 
 var app = new Vue({
   el: '#vue-app',
   data: {
-    inputEssay: 'Computer science are scientific and practical approach to compute and its applications. It is the systematic studying of the feasibility, structure, expression, and mechanization of the methodic procedures that underlies the acquisition, representation, processing, storage, communication of, and access for information, whether such information are encoded of bits in a computer memory or transgribed in genes and protein structures in a biological cell. An alternative, more succinct definitions of computer science is the study of automating algorithmic processes that scale.',
+    inputEssay: '',
     outputEssay: '',
     edittingEssay: true,
     topics: [],
@@ -11,11 +15,13 @@ var app = new Vue({
     nouDef: [],
     vrbDef: [],
     adjDef: [],
-    advDef: []
+    advDef: [],
+    isCheckingGrammar: false
   },
   methods: {
     checkGrammar: function() {
       var _this = this;
+      this.isCheckingGrammar = true;
       $.ajax({
         method: 'GET',
         url: '/api/check_grammar',
@@ -39,6 +45,7 @@ var app = new Vue({
 
           _this.edittingEssay = false;
           _this.outputEssay = outputEssay;
+          _this.isCheckingGrammar = false;
 
           Vue.nextTick(function() {
             $('#correct-text').html(_this.addSpanTag(correctedText));
@@ -82,7 +89,7 @@ var app = new Vue({
           });
           _this.topics = [];
           for (var i = 0; i < Math.min(10, sortedTopics.length); i++) {
-            _this.topics.push(sortedTopics[i][0]);
+            _this.topics.push(sortedTopics[i][0].toUpperCase());
           }
         }
       });

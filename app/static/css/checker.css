@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  background: linear-gradient(#bbdefb,#7986cb);
 }
 
 nav .nav-wrapper {
@@ -23,6 +24,7 @@ footer.page-footer {
 
 .body .card {
   margin: 15px 0;
+  border-radius: 10px;
 }
 
 .body .card#checker-input-block {
@@ -54,6 +56,13 @@ footer.page-footer {
   outline: none;
 }
 
+.text-para {
+  font-size: 20px;
+  font-weight: 300;
+  width: 100%;
+}
+
+/* Buttons */
 .edit-btns {
   position: relative;
   height: 0;
@@ -86,6 +95,17 @@ footer.page-footer {
   line-height: 70px;
 }
 
+/* Grammar checker output block */
+#checker-output-block .card-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.spinner-layer {
+  border-color: #673ab7;
+}
+
+/* Dictionary block */
 #dictionary-block .word-input-block {
   display: flex;
   align-items: center;
@@ -104,4 +124,10 @@ footer.page-footer {
 #dictionary-block .word-input-block .input-field input:focus {
   border-bottom: 1px solid #b39ddb;
   box-shadow: 0 1px 0 0 #b39ddb;
+}
+.definition-part {
+  margin: 15px 0;
+}
+.definition-part ol {
+  margin: 0;
 }
