@@ -56,9 +56,14 @@ var app = new Vue({
               },
               function() { $(this).css('background-color',''); }
             );
-            $('#correct-text span').click(function() {
+            $('#correct-text span').click(function(event) {
               _this.queryWord = $(this).text();
               _this.searchWord();
+              $('#synonyms-popup').css('left', event.pageX);
+              $('#synonyms-popup').css('top', event.pageY - 215);
+              $('#synonyms-popup').css('display', 'inline');
+              $('#synonyms-popup').css('position', 'absolute');
+              _this.getSynonyms($(this).text());
             });
           });
         }
@@ -139,6 +144,28 @@ var app = new Vue({
               _this.advDef.push(meanings[i].substring(6));
             }
           }
+        }
+      });
+    },
+    getSynonyms: function(word) {
+      var _this = this;
+      $.ajax({
+        method: 'GET',
+        url: '/api/get_synonyms',
+        data: { word: word },
+        success: function(resp) {
+          var respJson = JSON.parse(resp);
+          if (respJson.result_msg !== 'Success') {
+            Materialize.toast(respJson.result_msg, 3000);
+            return;
+          }
+          var synonymsList = respJson.associations_array;
+          var html = '<div>' + word + '</div><ul>';
+          for (var i = 0; i < Math.min(5, synonymsList.length); i++) {
+            html += '<li>' + synonymsList[i] + '</li>';
+          }
+          html += '</ul>';
+          $('#synonyms-popup').html(html);
         }
       });
     },

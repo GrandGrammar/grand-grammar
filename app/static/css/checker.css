@@ -105,6 +105,34 @@ footer.page-footer {
   border-color: #673ab7;
 }
 
+#synonyms-popup {
+  display: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  width: 150px;
+  height: 200px;
+  z-index: 100;
+  color: #555;
+  font-size: 16px;
+  font-weight: 300;
+  border: 2px solid #cacaca;
+}
+
+#synonyms-popup > div {
+  padding: 5px 0;
+  font-weight: 400;
+  border-bottom: 2px solid #cacaca;
+}
+
+#synonyms-popup ul {
+  margin: 0;
+}
+
+#synonyms-popup ul li {
+  margin: 0;
+  margin: 5px 0;
+}
+
 /* Dictionary block */
 #dictionary-block .word-input-block {
   display: flex;

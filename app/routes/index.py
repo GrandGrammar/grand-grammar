@@ -86,7 +86,7 @@ def get_synonyms():
         'https://twinword-word-associations-v1.p.mashape.com/associations/',
         { 'entry': word }
     )
-    return json.dumps(response.body['associations_array'])
+    return json.dumps(response.body)
 
 @app.route('/api/get_definition')
 def get_definition():
