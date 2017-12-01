@@ -1,5 +1,5 @@
 Flask
 gunicorn
 unirest
-urllib
+urllib3
 urlparse
