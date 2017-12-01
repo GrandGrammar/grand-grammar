@@ -189,6 +189,9 @@ var app = new Vue({
       var res = '';
       var re = /\w+/;
       var parts = text.match(/\w+|\s+|[^\s\w]+/g);
+      if (!parts) {
+        return res;
+      }
       for (var i = 0; i < parts.length; i++) {
         if (re.test(parts[i])) {
           res += '<span>' + parts[i] + '</span>';
