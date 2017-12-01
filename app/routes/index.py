@@ -21,7 +21,7 @@ def checker():
 
 # APIs
 def call_twinword_api(url, params):
-    f = open(os.path.join(APP_ROOT, 'api_key'), 'r')
+    f = open(os.path.join(APP_ROOT, '.api_key'), 'r')
     api_key = f.readline()[:-1]
 
     response = unirest.post(
@@ -37,7 +37,7 @@ def call_twinword_api(url, params):
     return response
 
 def call_ginger_api(text):
-    f = open(os.path.join(APP_ROOT, 'ginger_api_key'), 'r')
+    f = open(os.path.join(APP_ROOT, '.ginger_api_key'), 'r')
     api_key = f.readline()[:-1]
 
     scheme = 'http'
