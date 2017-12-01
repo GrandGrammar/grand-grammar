@@ -1,6 +1,8 @@
 import json
 import unirest
 import os
+import urlparse
+import urllib
 
 from app import app
 from flask import Flask, request
@@ -34,31 +36,38 @@ def call_twinword_api(url, params):
 
     return response
 
+def call_ginger_api(text):
+    f = open(os.path.join(APP_ROOT, 'ginger_api_key'), 'r')
+    api_key = f.readline()[:-1]
+
+    scheme = 'http'
+    netloc = 'services.gingersoftware.com'
+    path = '/Ginger/correct/json/GingerTheText'
+    params = ''
+    query = urllib.urlencode([
+        ('lang', 'US'),
+        ('clientVersion', '2.0'),
+        ('apiKey', api_key),
+        ('text', text)])
+    fragment = ''
+
+    url = urlparse.urlunparse((scheme, netloc, path, params, query, fragment))
+    response = urllib.urlopen(url)
+    result = json.loads(response.read().decode('utf-8'))
+    return result
+
 @app.route('/api/check_grammar')
 def check_grammar():
-    # TODO: Implement this api
     text = request.args['text']
-    results = [{
-        'from': 17,
-        'to': 19,
-        'suggestion': 'is'
-    }, {
-        'from': 21,
-        'to': 53,
-        'suggestion': 'a scientific and practical approach'
-    }, {
-        'from': 186,
-        'to': 193,
-        'suggestion': 'methodical'
-    }, {
-        'from': 390,
-        'to': 400,
-        'suggestion': 'transcribed'
-    }, {
-        'from': 472,
-        'to': 484,
-        'suggestion': 'most succinct'
-    }]
+    response = call_ginger_api(text)
+    results = []
+    for error in response['LightGingerTheTextResult']:
+        if error['Suggestions']:
+            results.append({
+                'from': error['From'],
+                'to': error['To'],
+                'suggestion': error['Suggestions'][0]['Text']
+            })
     return json.dumps(results)
 
 @app.route('/api/get_topics')

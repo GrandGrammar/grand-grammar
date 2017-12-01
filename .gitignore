@@ -2,3 +2,4 @@
 node_modules/
 *.pyc
 api_key
+ginger_api_key
