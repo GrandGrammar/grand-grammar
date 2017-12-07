@@ -100,6 +100,15 @@ var app = new Vue({
         }
       });
     },
+    copyOutput: function() {
+      var textArea = document.createElement('textarea');
+      textArea.value = $('#correct-text').text();
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('Copy');
+      document.body.removeChild(textArea);
+      Materialize.toast('Copied to clipboard!', 3000);
+    },
     searchWord: function() {
       if (!this.queryWord) {
         Materialize.toast('Please enter the word!', 3000);

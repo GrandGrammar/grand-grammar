@@ -35,7 +35,7 @@
         </div>
         <div class="edit-btns">
           <a id="copy-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-3 tooltipped" data-position="top" data-tooltip="Copy">
-            <i class="material-icons">content_copy</i>
+            <i class="material-icons" @click="copyOutput">content_copy</i>
           </a>
           <a id="tag-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-2 tooltipped" data-position="top" data-tooltip="Generate Tags">
             <i class="material-icons" @click="generateTopicTags">local_offer</i>
