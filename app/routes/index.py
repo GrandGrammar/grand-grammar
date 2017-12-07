@@ -7,6 +7,7 @@ import urllib
 from app import app
 from flask import Flask, request
 from app.settings import APP_ROOT
+from app.algorithms.ViterbiAlgorithmUNK import ViterbiAlgorithmUNK
 
 debug = False
 
@@ -86,7 +87,24 @@ def get_synonyms():
         'https://twinword-word-associations-v1.p.mashape.com/associations/',
         { 'entry': word }
     )
-    return json.dumps(response.body)
+
+    if response.body['result_msg'] != 'Success':
+        return json.dumps(response.body)
+
+    va = ViterbiAlgorithmUNK()
+    init_tag = va.pos_tag([ word, 'test' ], 0)
+
+    filtered_list = []
+    for w in response.body['associations_array']:
+        if va.pos_tag([ w, 'test' ], 0) == init_tag:
+            filtered_list.append(w)
+
+    resp = {
+        'result_msg': 'Success',
+        'associations_array': filtered_list
+    }
+
+    return json.dumps(resp)
 
 @app.route('/api/get_definition')
 def get_definition():
