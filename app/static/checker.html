@@ -80,6 +80,9 @@
                 <input type="text" v-model="queryWord" @keyup.enter="searchWord">
               </div>
             </div>
+            <div class="exam-part">
+              <div v-for="exam in examList" class="chip deep-purple lighten-4">{{ exam }}</div>
+            </div>
             <div class="definition-part">
               <div v-show="nouDef.length > 0">
                 <label>Noun</label>

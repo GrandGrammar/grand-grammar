@@ -12,6 +12,7 @@ var app = new Vue({
     edittingEssay: true,
     topics: [],
     queryWord: '',
+    examList: [],
     nouDef: [],
     vrbDef: [],
     adjDef: [],
@@ -104,11 +105,34 @@ var app = new Vue({
         Materialize.toast('Please enter the word!', 3000);
         return;
       }
+      this.getExamHistory(this.queryWord);
+      this.getDefinition(this.queryWord);
+    },
+    getExamHistory: function(word) {
+      var _this = this;
+      $.ajax({
+        method: 'GET',
+        url: '/api/get_exam_history',
+        data: { word: word },
+        success: function(resp) {
+          var respJson = JSON.parse(resp);
+          if (respJson.result_msg !== 'Success') {
+            Materialize.toast(respJson.result_msg, 3000);
+            return;
+          }
+          _this.examList = [];
+          for (var i = 0; i < respJson.exam.length; i++) {
+            _this.examList.push(respJson.exam[i].toUpperCase());
+          }
+        }
+      });
+    },
+    getDefinition: function(word) {
       var _this = this;
       $.ajax({
         method: 'GET',
         url: '/api/get_definition',
-        data: { word: this.queryWord },
+        data: { word: word },
         success: function(resp) {
           var respJson = JSON.parse(resp);
           if (respJson.result_msg !== 'Success') {

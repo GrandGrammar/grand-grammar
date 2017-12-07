@@ -96,3 +96,12 @@ def get_definition():
         { 'entry': word }
     )
     return json.dumps(response.body)
+
+@app.route('/api/get_exam_history')
+def get_exam_history():
+    word = request.args['word']
+    response = call_twinword_api(
+        'https://twinword-word-graph-dictionary.p.mashape.com/examhistory/',
+        { 'entry': word }
+    )
+    return json.dumps(response.body)

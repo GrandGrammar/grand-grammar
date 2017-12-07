@@ -153,6 +153,9 @@ footer.page-footer {
   border-bottom: 1px solid #b39ddb;
   box-shadow: 0 1px 0 0 #b39ddb;
 }
+.exam-part {
+  margin: 15px 0;
+}
 .definition-part {
   margin: 15px 0;
 }
