@@ -34,10 +34,18 @@
           </div>
         </div>
         <div class="edit-btns">
-          <a id="copy-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-3"><i class="material-icons">content_copy</i></a>
-          <a id="tag-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-2"><i class="material-icons" @click="generateTopicTags">local_offer</i></a>
-          <a id="edit-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-1"><i class="material-icons" @click="editEssay">create</i></a>
-          <a id="check-btn" class="btn-floating waves-effect waves-light deep-purple pulse"><i class="material-icons" @click="checkGrammar">spellcheck</i></a>
+          <a id="copy-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-3 tooltipped" data-position="top" data-tooltip="Copy">
+            <i class="material-icons">content_copy</i>
+          </a>
+          <a id="tag-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-2 tooltipped" data-position="top" data-tooltip="Generate Tags">
+            <i class="material-icons" @click="generateTopicTags">local_offer</i>
+          </a>
+          <a id="edit-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-1 tooltipped" data-position="top" data-tooltip="Edit">
+            <i class="material-icons" @click="editEssay">create</i>
+          </a>
+          <a id="check-btn" class="btn-floating waves-effect waves-light deep-purple pulse tooltipped" data-position="top" data-tooltip="Check!">
+            <i class="material-icons" @click="checkGrammar">spellcheck</i>
+          </a>
         </div>
         <div id="checker-output-block" class="card z-depth-3">
           <div class="card-content">
