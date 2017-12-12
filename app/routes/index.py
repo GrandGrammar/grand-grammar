@@ -20,6 +20,10 @@ def root():
 def checker():
     return app.send_static_file('checker.html')
 
+@app.route('/about')
+def about():
+    return app.send_static_file('about.html')
+
 # APIs
 def call_twinword_api(url, params):
     f = open(os.path.join(APP_ROOT, '.api_key'), 'r')
