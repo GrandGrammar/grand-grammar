@@ -17,10 +17,14 @@ var app = new Vue({
     vrbDef: [],
     adjDef: [],
     advDef: [],
-    isCheckingGrammar: false
+    isCheckingGrammar: false,
+    reportComment: '',
+    errorCounts: {}
   },
   methods: {
     checkGrammar: function() {
+      this.reportComment = '';
+      this.errorCounts = {};
       var _this = this;
       this.isCheckingGrammar = true;
       $.ajax({
@@ -28,7 +32,10 @@ var app = new Vue({
         url: '/api/check_grammar',
         data: { text: this.inputEssay },
         success: function(resp) {
-          var errorList = JSON.parse(resp).error_list;
+          var parsedResp = JSON.parse(resp);
+          _this.reportComment = parsedResp.comment;
+          _this.errorCounts = parsedResp.error_type;
+          var errorList = parsedResp.error_list;
 
           var correctedText = '';
           var errorText = '';
@@ -108,6 +115,18 @@ var app = new Vue({
       document.execCommand('Copy');
       document.body.removeChild(textArea);
       Materialize.toast('Copied to clipboard!', 3000);
+    },
+    showReport: function() {
+      if (!this.reportComment) {
+        Materialize.toast('Please check grammar first!', 3000);
+        return;
+      }
+      $('#modal').modal('open');
+      $('#modal .report-comment').text(this.reportComment);
+      $('#noun-count').text(this.errorCounts.noun);
+      $('#verb-count').text(this.errorCounts.verb);
+      $('#adjective-count').text(this.errorCounts.adjective);
+      $('#adverb-count').text(this.errorCounts.adverb);
     },
     searchWord: function() {
       if (!this.queryWord) {

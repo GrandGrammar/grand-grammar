@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   background: linear-gradient(#bbdefb, #7986cb);
+  overflow: visible !important;
 }
 
 nav .nav-wrapper {
@@ -76,6 +77,9 @@ footer.page-footer {
 
 #copy-btn {
   right: 242px;
+}
+#report-btn {
+  right: 323px;
 }
 #tag-btn {
   right: 161px;
@@ -161,4 +165,28 @@ footer.page-footer {
 }
 .definition-part ol {
   margin: 0;
+}
+
+#modal .report-comment {
+  font-size: 18px;
+  font-style: italic;
+}
+#modal .error-stat .count-part {
+  display: flex;
+  justify-content: center;
+}
+#modal .error-stat .description {
+  font-size: 18px;
+}
+#modal .error-stat .count-part .count-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+#modal .error-stat .count-part .count-item label {
+  font-size: 20px;
+}
+#modal .error-stat .count-part .count-item span {
+  font-size: 55px;
 }

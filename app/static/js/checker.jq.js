@@ -6,4 +6,5 @@ $(document).mouseup(function(e) {
   }
 
   $('.tooltipped').tooltip();
+  $('.modal').modal();
 });

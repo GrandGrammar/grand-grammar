@@ -34,8 +34,11 @@
           </div>
         </div>
         <div class="edit-btns">
-          <a id="copy-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-3 tooltipped" data-position="top" data-tooltip="Copy">
+          <a id="copy-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-4 tooltipped" data-position="top" data-tooltip="Copy">
             <i class="material-icons" @click="copyOutput">content_copy</i>
+          </a>
+          <a id="report-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-3 tooltipped" data-position="top" data-tooltip="Report">
+            <i class="material-icons" @click="showReport">assignment</i>
           </a>
           <a id="tag-btn" class="edit-btn btn-large btn-floating waves-effect waves-light deep-purple lighten-2 tooltipped" data-position="top" data-tooltip="Generate Tags">
             <i class="material-icons" @click="generateTopicTags">local_offer</i>
@@ -124,6 +127,37 @@
   </footer>
 
   <div id="synonyms-popup" class="deep-purple lighten-5 z-depth-4"></div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h4>Report</h4>
+      <p class="report-comment"></p>
+      <div class="error-stat">
+        <div class="description">Error Distribution</div>
+        <div class="count-part">
+          <div class="count-item">
+            <label>Nouns</label>
+            <span id="noun-count" class="deep-purple-text"></span>
+          </div>
+          <div class="count-item">
+            <label>Verbs</label>
+            <span id="verb-count" class="deep-purple-text"></span>
+          </div>
+          <div class="count-item">
+            <label>Adjectives</label>
+            <span id="adjective-count" class="deep-purple-text"></span>
+          </div>
+          <div class="count-item">
+            <label>Adverbs</label>
+            <span id="adverb-count" class="deep-purple-text"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Got it!</a>
+    </div>
+  </div>
 
   <script type="text/javascript" src="lib/jquery/jquery-1.10.1.min.js"></script>
   <script type="text/javascript" src="lib/jquery/jquery.hoverIntent.min.js"></script>
