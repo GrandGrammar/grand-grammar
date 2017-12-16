@@ -28,7 +28,7 @@ var app = new Vue({
         url: '/api/check_grammar',
         data: { text: this.inputEssay },
         success: function(resp) {
-          var errorList = JSON.parse(resp);
+          var errorList = JSON.parse(resp).error_list;
 
           var correctedText = '';
           var errorText = '';

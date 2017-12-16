@@ -8,6 +8,7 @@ from app import app
 from flask import Flask, request
 from app.settings import APP_ROOT
 from app.algorithms.ViterbiAlgorithmUNK import ViterbiAlgorithmUNK
+from app.utils.comment_generater import combine_errors, generate_comment
 
 debug = False
 
@@ -65,15 +66,31 @@ def call_ginger_api(text):
 def check_grammar():
     text = request.args['text']
     response = call_ginger_api(text)
-    results = []
+    error_type = {}
+    error_list = []
+    va = ViterbiAlgorithmUNK()
+
     for error in response['LightGingerTheTextResult']:
         if error['Suggestions']:
-            results.append({
+            error_list.append({
                 'from': error['From'],
                 'to': error['To'],
                 'suggestion': error['Suggestions'][0]['Text']
             })
-    return json.dumps(results)
+            tag = va.pos_tag([ error['Suggestions'][0]['Text'], 'test' ], 0)
+            if tag not in error_type:
+                error_type[tag] = 0
+            error_type[tag] += 1
+
+    output_error_type = combine_errors(error_type)
+    comment = generate_comment(output_error_type)
+
+    result = {
+        'comment': comment,
+        'error_type': output_error_type,
+        'error_list': error_list
+    }
+    return json.dumps(result)
 
 @app.route('/api/get_topics')
 def get_topics():
