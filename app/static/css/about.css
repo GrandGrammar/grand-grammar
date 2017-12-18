@@ -18,11 +18,28 @@ footer.page-footer {
   text-align: center;
 }
 
+.words-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 15% 0;
+  height: 250px;
+}
+
+.words-block h1 {
+  font-size: 40px;
+}
+
+.words-block p {
+  font-size: 18px;
+  text-align: justify;
+}
+
 .body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 114px);
+  height: 350px;
 }
 
 .card {
